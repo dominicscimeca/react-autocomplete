@@ -1,5 +1,5 @@
 import React from 'react';
-import {capitalize} from "./StringUtils";
+import {capitalize} from "../../lib/StringUtils";
 
 const Person = ({person}) => {
     const attributes = Object.keys(person)

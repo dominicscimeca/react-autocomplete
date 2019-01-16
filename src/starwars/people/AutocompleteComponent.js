@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Autocomplete from "../../lib/AutocompleteComponent"
-import Person from "../../PersonComponent";
+import Person from "./PersonComponent";
 
 class AutocompleteComponent extends Component {
     starWarsPeopleSearchUrl = (searchTerm) => {
