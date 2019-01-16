@@ -5,7 +5,7 @@ const inputEventObservable = ({input, debounceDuration = 100, eventName = "keypr
     return rx.fromEvent(input, eventName)
         .pipe(
             debounce(() => rx.timer(debounceDuration)),
-            map(event => event.srcElement.value)
+            map(event => {console.log(event); return event.target.value})
         )
 };
 

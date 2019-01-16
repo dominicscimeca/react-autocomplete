@@ -23,6 +23,10 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>React App</title>
+    <script
+            src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E="
+            crossorigin="anonymous"></script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
@@ -37,5 +41,35 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+    <div class="jquery-legacy-root">
+      Jquery People Search: <input/>
+      <div class="results"></div>
+    </div>
+    <script>
+      function peopleResultsHTML(results){
+        var html = "<div>Results</div>";
+        html += "<ul>";
+        results.forEach(function(result){
+          html += "<li>"+result.name+"</li>";
+        });
+        html += "</ul>";
+
+        return html
+      }
+
+      $(function() {
+        window.app.fetchFromInput(
+                {
+                  input: $(".jquery-legacy-root input"),
+                  debounce: 200,
+                  urlGenerator: function (searchTerm) {
+                    return "https://swapi.co/api/people/?search=" + searchTerm
+                  }
+                }
+        ).subscribe(data => {
+          $(".jquery-legacy-root .results").html( peopleResultsHTML(data.results) )
+        })
+      })
+    </script>
   </body>
 </html>
