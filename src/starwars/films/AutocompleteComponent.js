@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import Autocomplete from "./lib/AutocompleteComponent"
+import Autocomplete from "../../lib/AutocompleteComponent"
 
-class StarwarsFilmsAutocompleteComponent extends Component {
+class AutocompleteComponent extends Component {
     starWarsFilmsSearchUrl = (searchTerm) => {
         return `https://swapi.co/api/films/?search=${searchTerm}`;
     };
@@ -32,4 +32,4 @@ class StarwarsFilmsAutocompleteComponent extends Component {
     }
 }
 
-export default StarwarsFilmsAutocompleteComponent
+export default AutocompleteComponent

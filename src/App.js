@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import StarwarsFilmsAutocomplete from './StarwarsFilmsAutocompleteComponent'
-import StarwarsPeopleAutocompleteComponent from './StarwarsPeopleAutocompleteComponent'
+import StarwarsFilmsAutocomplete from './starwars/films/AutocompleteComponent'
+import StarwarsPeopleAutocompleteComponent from './starwars/people/AutocompleteComponent'
 
 class App extends Component {
   render() {

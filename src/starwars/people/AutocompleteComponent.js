@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import Autocomplete from "./lib/AutocompleteComponent"
-import Person from "./PersonComponent";
+import Autocomplete from "../../lib/AutocompleteComponent"
+import Person from "../../PersonComponent";
 
-class StarwarsPeopleAutocompleteComponent extends Component {
+class AutocompleteComponent extends Component {
     starWarsPeopleSearchUrl = (searchTerm) => {
         return `https://swapi.co/api/people/?search=${searchTerm}`;
     };
@@ -33,4 +33,4 @@ class StarwarsPeopleAutocompleteComponent extends Component {
     }
 }
 
-export default StarwarsPeopleAutocompleteComponent
+export default AutocompleteComponent
