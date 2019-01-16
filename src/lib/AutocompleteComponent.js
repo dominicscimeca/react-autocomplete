@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import fetchFromInput from "./fetchFromInput";
+import { fetchFromInput } from "./fetchObservable";
 
 const AutocompleteContext = React.createContext({});
 

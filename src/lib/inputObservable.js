@@ -1,0 +1,12 @@
+import * as rx from "rxjs";
+import {debounce, map} from "rxjs/operators";
+
+const inputEventObservable = ({input, debounceDuration = 100, eventName = "keypress"}) => {
+    return rx.fromEvent(input, eventName)
+        .pipe(
+            debounce(() => rx.timer(debounceDuration)),
+            map(event => event.srcElement.value)
+        )
+};
+
+export default inputEventObservable
