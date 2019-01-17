@@ -2,6 +2,16 @@ import { switchMap } from "rxjs/operators";
 import * as rx from "rxjs";
 import inputEventObservable from "./inputObservable";
 
+const fetchFromInputCurry = (props) => {
+    return (props2) => {
+        const propsCombined = Object.assign(props2, props);
+
+        return (props3) => {
+            return fetchFromInput(Object.assign(propsCombined, props3))
+        }
+    }
+};
+
 const fetchFromInput = ({input, urlGenerator, debounce = 100, eventName = 'keypress'}) => {
     const observable = inputEventObservable({input, debounceDuration: debounce, eventName});
     return fetchURLFromObservable(observable, urlGenerator)
@@ -21,6 +31,7 @@ const fetchURL = (url) => {
 
 
 export {
+    fetchFromInputCurry,
     fetchFromInput,
     fetchURLFromObservable,
     fetchURL

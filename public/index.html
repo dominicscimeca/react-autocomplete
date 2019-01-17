@@ -58,17 +58,10 @@
       }
 
       $(function() {
-        window.app.fetchFromInput(
-                {
-                  input: $(".jquery-legacy-root input"),
-                  debounce: 200,
-                  urlGenerator: function (searchTerm) {
-                    return "https://swapi.co/api/people/?search=" + searchTerm
-                  }
-                }
-        ).subscribe(data => {
-          $(".jquery-legacy-root .results").html( peopleResultsHTML(data.results) )
-        })
+        window.app.peopleSearch({debounce: 200})({input: $(".jquery-legacy-root input")})
+            .subscribe(data => {
+              $(".jquery-legacy-root .results").html( peopleResultsHTML(data.results) )
+            })
       })
     </script>
   </body>

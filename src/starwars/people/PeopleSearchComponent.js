@@ -1,13 +1,11 @@
 import React, {Component} from 'react';
 import Autocomplete from "../../lib/AutocompleteComponent"
 import Person from "./PersonComponent";
+import peopleSearch from './PeopleSearch'
 
-class AutocompleteComponent extends Component {
-    starWarsPeopleSearchUrl = (searchTerm) => {
-        return `https://swapi.co/api/people/?search=${searchTerm}`;
-    };
+class PeopleSearchComponent extends Component {
 
-    results(peopleData) {
+    renderPeople(peopleData) {
         return 'undefined' != typeof peopleData.results && peopleData.results.length > 0 ?
             (
                 <div>
@@ -21,11 +19,11 @@ class AutocompleteComponent extends Component {
 
     render() {
         return (
-            <Autocomplete debounce={0} urlGenerator={this.starWarsPeopleSearchUrl}>
-                {({results: peopleData}) => (
+            <Autocomplete fetchFromInput={ peopleSearch({debounce:0}) } >
+                {(peopleData) => (
                     <div>
                         <div>People Search: <Autocomplete.INPUT/></div>
-                        { this.results(peopleData) }
+                        { this.renderPeople(peopleData) }
                     </div>
                 )}
             </Autocomplete>
@@ -33,4 +31,4 @@ class AutocompleteComponent extends Component {
     }
 }
 
-export default AutocompleteComponent
+export default PeopleSearchComponent

@@ -1,12 +1,11 @@
 import React, {Component} from 'react';
-import { fetchFromInput } from "./fetchObservable";
 
 const AutocompleteContext = React.createContext({});
 
 class Autocomplete extends Component {
 
     inputRef = React.createRef();
-    state = { results: {} };
+    state = {};
 
     static INPUT = () => (
         <AutocompleteContext.Consumer>
@@ -15,12 +14,11 @@ class Autocomplete extends Component {
     );
 
     componentDidMount() {
-        const {debounce = 100, urlGenerator} = this.props;
+        const {fetchFromInput} = this.props;
         const input = this.inputRef.current;
 
-        const response = fetchFromInput({input, debounce, urlGenerator});
-
-        response.subscribe(results => this.setState({results}));
+        fetchFromInput({input})
+            .subscribe(resp => this.setState(resp));
     }
 
     render() {

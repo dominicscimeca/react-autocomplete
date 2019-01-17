@@ -1,12 +1,10 @@
 import React, {Component} from 'react';
 import Autocomplete from "../../lib/AutocompleteComponent"
+import filmsSearch from "./FilmsSearch";
 
-class AutocompleteComponent extends Component {
-    starWarsFilmsSearchUrl = (searchTerm) => {
-        return `https://swapi.co/api/films/?search=${searchTerm}`;
-    };
+class FilmsSearchComponent extends Component {
 
-    results(filmData) {
+    renderFilms(filmData) {
        return 'undefined' != typeof filmData.results && filmData.results.length > 0 ?
         (
             <div>
@@ -20,11 +18,11 @@ class AutocompleteComponent extends Component {
 
     render() {
         return (
-            <Autocomplete debounce={0} urlGenerator={this.starWarsFilmsSearchUrl}>
-                {({results: filmData}) => (
+            <Autocomplete fetchFromInput={ filmsSearch({debounce:50}) }>
+                {(films) => (
                     <div>
                         <div>Films Search: <Autocomplete.INPUT/></div>
-                        { this.results(filmData) }
+                        { this.renderFilms(films) }
                     </div>
                 )}
             </Autocomplete>
@@ -32,4 +30,4 @@ class AutocompleteComponent extends Component {
     }
 }
 
-export default AutocompleteComponent
+export default FilmsSearchComponent

@@ -1,7 +1,7 @@
-import {fetchFromInput} from "./lib/fetchObservable";
+import peopleSearch from "./starwars/people/PeopleSearch";
 
 const app = {
-    fetchFromInput
+    peopleSearch
 };
 
 window.app = app;
