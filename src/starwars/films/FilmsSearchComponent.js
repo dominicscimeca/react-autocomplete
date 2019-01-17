@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Autocomplete from "../../lib/AutocompleteComponent"
-import filmsSearch from "./FilmsSearch";
+import filmsSearchBuilder from "./FilmsSearchBuilder";
 
 class FilmsSearchComponent extends Component {
 
@@ -18,7 +18,7 @@ class FilmsSearchComponent extends Component {
 
     render() {
         return (
-            <Autocomplete fetchFromInput={ filmsSearch({debounce:50}) }>
+            <Autocomplete fetchFromInputBuilder={ filmsSearchBuilder.withDebounce(50) }>
                 {(films) => (
                     <div>
                         <div>Films Search: <Autocomplete.INPUT/></div>

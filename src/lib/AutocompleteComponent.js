@@ -14,10 +14,12 @@ class Autocomplete extends Component {
     );
 
     componentDidMount() {
-        const {fetchFromInput} = this.props;
+        const {fetchFromInputBuilder} = this.props;
         const input = this.inputRef.current;
 
-        fetchFromInput({input})
+        fetchFromInputBuilder
+            .withInput(input)
+            .build()
             .subscribe(resp => this.setState(resp));
     }
 

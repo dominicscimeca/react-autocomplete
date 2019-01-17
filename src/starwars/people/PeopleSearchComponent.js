@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Autocomplete from "../../lib/AutocompleteComponent"
 import Person from "./PersonComponent";
-import peopleSearch from './PeopleSearch'
+import peopleSearchBuilder from './PeopleSearchBuilder'
 
 class PeopleSearchComponent extends Component {
 
@@ -19,7 +19,7 @@ class PeopleSearchComponent extends Component {
 
     render() {
         return (
-            <Autocomplete fetchFromInput={ peopleSearch({debounce:0}) } >
+            <Autocomplete fetchFromInputBuilder={ peopleSearchBuilder.withDebounce(0) } >
                 {(peopleData) => (
                     <div>
                         <div>People Search: <Autocomplete.INPUT/></div>

@@ -2,15 +2,37 @@ import { switchMap } from "rxjs/operators";
 import * as rx from "rxjs";
 import inputEventObservable from "./inputObservable";
 
-const fetchFromInputCurry = (props) => {
-    return (props2) => {
-        const propsCombined = Object.assign(props2, props);
+class FetchFromInputBuilder {
+    options = {};
 
-        return (props3) => {
-            return fetchFromInput(Object.assign(propsCombined, props3))
-        }
+    constructor(initialOptions){
+        this.options = initialOptions
     }
-};
+
+    withDebounce = (debounceInMillis) => {
+        this.options.debounce = debounceInMillis;
+        return this
+    };
+
+    withEventName = (eventName) => {
+        this.options.eventName = eventName;
+        return this
+    };
+
+    withUrlGenerator = (urlGenerator) => {
+        this.options.urlGenerator = urlGenerator;
+        return this
+    };
+
+    withInput = (input) => {
+        this.options.input = input;
+        return this
+    };
+
+    build = () => {
+        return fetchFromInput(this.options)
+    }
+}
 
 const fetchFromInput = ({input, urlGenerator, debounce = 100, eventName = 'keypress'}) => {
     const observable = inputEventObservable({input, debounceDuration: debounce, eventName});
@@ -31,7 +53,7 @@ const fetchURL = (url) => {
 
 
 export {
-    fetchFromInputCurry,
+    FetchFromInputBuilder,
     fetchFromInput,
     fetchURLFromObservable,
     fetchURL

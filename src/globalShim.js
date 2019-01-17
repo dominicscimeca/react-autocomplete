@@ -1,7 +1,7 @@
-import peopleSearch from "./starwars/people/PeopleSearch";
+import peopleSearchBuilder from "./starwars/people/PeopleSearchBuilder";
 
 const app = {
-    peopleSearch
+    peopleSearchBuilder
 };
 
 window.app = app;

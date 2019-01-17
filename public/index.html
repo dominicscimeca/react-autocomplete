@@ -58,7 +58,10 @@
       }
 
       $(function() {
-        window.app.peopleSearch({debounce: 200})({input: $(".jquery-legacy-root input")})
+        window.app.peopleSearchBuilder
+            .withDebounce(200)
+            .withInput($(".jquery-legacy-root input"))
+            .build()
             .subscribe(data => {
               $(".jquery-legacy-root .results").html( peopleResultsHTML(data.results) )
             })
